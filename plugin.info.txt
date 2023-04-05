@@ -1,0 +1,7 @@
+base   htmlok
+author saggi
+email  saggi@gmx.de
+date   2023-04-05
+name   htmlok plugin
+desc   Allows embedd HTML
+url    http://www.dokuwiki.org/plugin:htmlok
