@@ -5,7 +5,7 @@
  * @license GPL 2 http://www.gnu.org/licenses/gpl-2.0.html
  * @author  saggi <saggi@gmx.de>
  */
-class syntax_plugin_htmlok_htmlok extends \dokuwiki\Extension\SyntaxPlugin
+class syntax_plugin_htmlok_htmlblock extends \dokuwiki\Extension\SyntaxPlugin
 {
     /** @inheritDoc */
     public function getType()
@@ -16,7 +16,7 @@ class syntax_plugin_htmlok_htmlok extends \dokuwiki\Extension\SyntaxPlugin
     /** @inheritDoc */
     public function getPType()
     {
-        return 'normal';
+        return 'block';
     }
 
     /** @inheritDoc */
@@ -28,13 +28,13 @@ class syntax_plugin_htmlok_htmlok extends \dokuwiki\Extension\SyntaxPlugin
     /** @inheritDoc */
     public function connectTo($mode)
     {
-        $this->Lexer->addEntryPattern('<html>(?=.*?</html>)', $mode, 'plugin_htmlok_htmlok');
+        $this->Lexer->addEntryPattern('<HTML>(?=.*?</HTML>)', $mode, 'plugin_htmlok_htmlblock');
     }
 
     /** @inheritDoc */
     public function postConnect()
     {
-        $this->Lexer->addExitPattern('</html>', 'plugin_htmlok_htmlok');
+        $this->Lexer->addExitPattern('</HTML>', 'plugin_htmlok_htmlblock');
     }
 
     /** @inheritDoc */
@@ -60,13 +60,13 @@ class syntax_plugin_htmlok_htmlok extends \dokuwiki\Extension\SyntaxPlugin
         list($state,$match) = $data;
         switch ($state) {
             case DOKU_LEXER_ENTER :
-                $renderer->doc .= '<div class="htmlok">'. DOKU_LF;
+                $renderer->doc .= '<div class="htmlblock">'. DOKU_LF;
                 break;
             case DOKU_LEXER_UNMATCHED :
                 If ($this->getConf('htmlok')) {
                     $renderer->doc .= $match;
                 } else {
-                    $renderer->doc .= p_xhtml_cached_geshi($match, 'html4strict', 'code');
+                    $renderer->doc .= p_xhtml_cached_geshi($match, 'html4strict', 'pre');
                 }
                 break;
             case DOKU_LEXER_EXIT :
