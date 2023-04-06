@@ -7,4 +7,5 @@
 
 
 $meta['htmlok']      = array('onoff','_caution' => 'security');
+$meta['phpok']       = array('onoff','_caution' => 'security');
 
