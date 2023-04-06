@@ -60,7 +60,6 @@ class syntax_plugin_htmlok_phpok extends \dokuwiki\Extension\SyntaxPlugin
         list($state,$match) = $data;
         switch ($state) {
             case DOKU_LEXER_ENTER :
-                $renderer->doc .= '<div class="phpok">'. DOKU_LF;
                 break;
             case DOKU_LEXER_UNMATCHED :
                 If ($this->getConf('phpok')) {
@@ -73,7 +72,6 @@ class syntax_plugin_htmlok_phpok extends \dokuwiki\Extension\SyntaxPlugin
                 }
                 break;
             case DOKU_LEXER_EXIT :
-                $renderer->doc .= '</div>'. DOKU_LF;
                 break;
         }
         return true;
