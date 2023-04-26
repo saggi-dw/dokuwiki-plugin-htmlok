@@ -5,7 +5,7 @@
  * @license GPL 2 http://www.gnu.org/licenses/gpl-2.0.html
  * @author  saggi <saggi@gmx.de>
  */
-class syntax_plugin_htmlok_phpblock extends \dokuwiki\Extension\SyntaxPlugin
+class syntax_plugin_htmlok_phpblock extends syntax_plugin_htmlok_htmlphpok
 {
     /** @inheritDoc */
     public function getType()
@@ -22,7 +22,7 @@ class syntax_plugin_htmlok_phpblock extends \dokuwiki\Extension\SyntaxPlugin
     /** @inheritDoc */
     public function getSort()
     {
-        return 190;
+        return 180;
     }
 
     /** @inheritDoc */

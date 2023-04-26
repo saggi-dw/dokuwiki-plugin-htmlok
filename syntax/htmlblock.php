@@ -5,7 +5,7 @@
  * @license GPL 2 http://www.gnu.org/licenses/gpl-2.0.html
  * @author  saggi <saggi@gmx.de>
  */
-class syntax_plugin_htmlok_htmlblock extends \dokuwiki\Extension\SyntaxPlugin
+class syntax_plugin_htmlok_htmlblock extends syntax_plugin_htmlok_htmlphpok
 {
     /** @inheritDoc */
     public function getType()
@@ -44,6 +44,7 @@ class syntax_plugin_htmlok_htmlblock extends \dokuwiki\Extension\SyntaxPlugin
             case DOKU_LEXER_ENTER :
                 return array($state,$match);
             case DOKU_LEXER_UNMATCHED :
+                $match = $this->RemoveBadHTML($match, true);
                 return array($state,$match);
             case DOKU_LEXER_EXIT :
                 return array($state,'');
