@@ -9,5 +9,5 @@
 // $lang['menu'] = 'Your menu entry';
 
 // custom language strings for the plugin
-// $lang['fixme'] = 'FIXME';
+ $lang['msgremovedtag'] = '<b>Removed because of configuration. Removed tag: </b><i>%s</i>';
 
