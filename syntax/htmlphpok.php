@@ -73,7 +73,7 @@ class syntax_plugin_htmlok_htmlphpok extends SyntaxPlugin
     /** @inheritDoc */
     public function getSort()
     {
-        return 179;
+        return 190;
     }
 
 

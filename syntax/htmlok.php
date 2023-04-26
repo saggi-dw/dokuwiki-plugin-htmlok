@@ -20,12 +20,6 @@ class syntax_plugin_htmlok_htmlok extends syntax_plugin_htmlok_htmlphpok
     }
 
     /** @inheritDoc */
-    public function getSort()
-    {
-        return 189;
-    }
-
-    /** @inheritDoc */
     public function connectTo($mode)
     {
         $this->Lexer->addEntryPattern('<html>(?=.*?</html>)', $mode, 'plugin_htmlok_htmlok');
