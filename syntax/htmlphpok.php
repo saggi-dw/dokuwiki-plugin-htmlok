@@ -39,7 +39,7 @@ class syntax_plugin_htmlok_htmlphpok extends SyntaxPlugin
     public function GetAllowedTags()
     {
         if (!self::$allowedTags) {
-            if(!count($this->getConf('allowedtags'))) {return array();}
+            if(!count($this->getConf('allowedtags'))) return array();
             self::$allowedTags = $this->getConf('allowedtags');
             self::$allowedTags = array_map('strtolower', self::$allowedTags);
             self::$allowedTags = array_map('trim', self::$allowedTags);
@@ -50,7 +50,7 @@ class syntax_plugin_htmlok_htmlphpok extends SyntaxPlugin
     public function GetAllowedAttributes()
     {
         if (!self::$allowedAttributes) {
-            if(!count($this->getConf('allowedattr'))) {return array();}
+            if(!count($this->getConf('allowedattr'))) return array();
             self::$allowedAttributes = $this->getConf('allowedattr');
             self::$allowedAttributes = array_map('strtolower',self::$allowedAttributes);
             self::$allowedAttributes = array_map('trim',self::$allowedAttributes);
