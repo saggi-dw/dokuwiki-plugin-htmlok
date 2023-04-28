@@ -14,7 +14,7 @@ use Doku_Handler;
 abstract class BaseSyntaxPlugin extends \dokuwiki\Extension\SyntaxPlugin
 {
     /** @var string */
-    protected $type;
+    protected $type = 'protected';
     /** @var string */
     protected $ptype;
     /** @var int */

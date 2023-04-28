@@ -10,7 +10,6 @@ use dokuwiki\plugin\htmlok\syntax\BaseSyntaxPlugin;
 
 class syntax_plugin_htmlok_htmlblock extends BaseSyntaxPlugin
 {
-    protected $type = 'protected';
     protected $ptype = 'block';
     protected $sort = 190;
 

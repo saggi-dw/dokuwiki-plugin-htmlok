@@ -11,7 +11,6 @@ use dokuwiki\plugin\htmlok\syntax\BaseSyntaxPlugin;
 
 class syntax_plugin_htmlok_phpblock extends BaseSyntaxPlugin
 {
-    protected $type = 'protected';
     protected $ptype = 'block';
     protected $sort = 180;
 
