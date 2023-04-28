@@ -51,4 +51,3 @@ class syntax_plugin_htmlok_htmlblock extends BaseSyntaxPlugin
         return true;
     }
 }
-

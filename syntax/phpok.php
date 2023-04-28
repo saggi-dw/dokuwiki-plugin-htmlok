@@ -52,4 +52,3 @@ class syntax_plugin_htmlok_phpok extends BaseSyntaxPlugin
         return true;
     }
 }
-

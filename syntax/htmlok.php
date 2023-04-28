@@ -49,4 +49,3 @@ class syntax_plugin_htmlok_htmlok extends BaseSyntaxPlugin
         return true;
     }
 }
-

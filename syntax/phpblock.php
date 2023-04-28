@@ -1,4 +1,5 @@
 <?php
+
 /**
  * DokuWiki Plugin htmlok (Syntax Component)
  *
@@ -54,4 +55,3 @@ class syntax_plugin_htmlok_phpblock extends BaseSyntaxPlugin
         return true;
     }
 }
-
