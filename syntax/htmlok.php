@@ -74,4 +74,3 @@ class syntax_plugin_htmlok_htmlok extends \dokuwiki\Extension\SyntaxPlugin
         return true;
     }
 }
-

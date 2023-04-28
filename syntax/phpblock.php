@@ -79,4 +79,3 @@ class syntax_plugin_htmlok_phpblock extends \dokuwiki\Extension\SyntaxPlugin
         return true;
     }
 }
-
