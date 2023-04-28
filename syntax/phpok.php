@@ -5,7 +5,10 @@
  * @license GPL 2 http://www.gnu.org/licenses/gpl-2.0.html
  * @author  saggi <saggi@gmx.de>
  */
-class syntax_plugin_htmlok_phpok extends \dokuwiki\Extension\SyntaxPlugin
+
+use dokuwiki\plugin\htmlok\syntax\BaseSyntaxPlugin;
+
+class syntax_plugin_htmlok_phpok extends BaseSyntaxPlugin
 {
     /** @inheritDoc */
     public function getType()
@@ -35,20 +38,6 @@ class syntax_plugin_htmlok_phpok extends \dokuwiki\Extension\SyntaxPlugin
     public function postConnect()
     {
         $this->Lexer->addExitPattern('</php>', 'plugin_htmlok_phpok');
-    }
-
-    /** @inheritDoc */
-    public function handle($match, $state, $pos, Doku_Handler $handler)
-    {
-        switch ($state) {
-            case DOKU_LEXER_ENTER :
-                return array($state,$match);
-            case DOKU_LEXER_UNMATCHED :
-                return array($state,$match);
-            case DOKU_LEXER_EXIT :
-                return array($state,'');
-        }
-        return array();
     }
 
     /** @inheritDoc */
