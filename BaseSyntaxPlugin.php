@@ -7,7 +7,7 @@
  * @author  Elan Ruusamäe <glen@delfi.ee>
  */
 
-namespace dokuwiki\plugin\htmlok\syntax;
+namespace dokuwiki\plugin\htmlok;
 
 use Doku_Handler;
 use Doku_Renderer;

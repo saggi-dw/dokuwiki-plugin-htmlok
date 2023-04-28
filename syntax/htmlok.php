@@ -6,7 +6,7 @@
  * @author  saggi <saggi@gmx.de>
  */
 
-use dokuwiki\plugin\htmlok\syntax\BaseSyntaxPlugin;
+use dokuwiki\plugin\htmlok\BaseSyntaxPlugin;
 
 class syntax_plugin_htmlok_htmlok extends BaseSyntaxPlugin
 {
