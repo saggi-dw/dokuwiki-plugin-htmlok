@@ -15,29 +15,17 @@ class syntax_plugin_htmlok_phpok extends BaseSyntaxPlugin
     protected $tag = 'php';
     protected $mode = 'plugin_htmlok_phpok';
 
-    /** @inheritDoc */
-    public function render($mode, Doku_Renderer $renderer, $data)
+    protected function renderMatch(string $match): string
     {
-        if ($mode !== 'xhtml') {
-            return false;
+        if ($this->getConf('phpok')) {
+            ob_start();
+            eval($match);
+            $contents = ob_get_contents();
+            ob_end_clean();
+        } else {
+            $contents = p_xhtml_cached_geshi($match, 'php', 'code');
         }
-        list($state,$match) = $data;
-        switch ($state) {
-            case DOKU_LEXER_ENTER :
-                break;
-            case DOKU_LEXER_UNMATCHED :
-                If ($this->getConf('phpok')) {
-                    ob_start();
-                    eval($match);
-                    $renderer->doc .= ob_get_contents();
-                    ob_end_clean();
-                } else {
-                    $renderer->doc .= p_xhtml_cached_geshi($match, 'php', 'code');
-                }
-                break;
-            case DOKU_LEXER_EXIT :
-                break;
-        }
-        return true;
+
+        return $contents;
     }
 }

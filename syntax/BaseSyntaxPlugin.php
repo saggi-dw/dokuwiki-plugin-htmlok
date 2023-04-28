@@ -10,6 +10,7 @@
 namespace dokuwiki\plugin\htmlok\syntax;
 
 use Doku_Handler;
+use Doku_Renderer;
 
 abstract class BaseSyntaxPlugin extends \dokuwiki\Extension\SyntaxPlugin
 {
@@ -23,6 +24,8 @@ abstract class BaseSyntaxPlugin extends \dokuwiki\Extension\SyntaxPlugin
     protected $tag;
     /** @var string */
     protected $mode;
+    /** @var string|null */
+    protected $class;
 
     public function getType(): string
     {
@@ -61,5 +64,31 @@ abstract class BaseSyntaxPlugin extends \dokuwiki\Extension\SyntaxPlugin
         }
 
         return [];
+    }
+
+    public function render($mode, Doku_Renderer $renderer, $data): bool
+    {
+        if ($mode !== 'xhtml') {
+            return false;
+        }
+
+        [$state, $match] = $data;
+        switch ($state) {
+            case DOKU_LEXER_ENTER:
+                if ($this->ptype === 'block') {
+                    $renderer->doc .= '<div class="' . $this->class . '">' . DOKU_LF;
+                }
+                break;
+            case DOKU_LEXER_UNMATCHED:
+                $renderer->doc .= $this->renderMatch($match);
+                break;
+            case DOKU_LEXER_EXIT:
+                if ($this->ptype === 'block') {
+                    $renderer->doc .= '</div>' . DOKU_LF;
+                }
+                break;
+        }
+
+        return true;
     }
 }

@@ -15,26 +15,14 @@ class syntax_plugin_htmlok_htmlok extends BaseSyntaxPlugin
     protected $tag = 'html';
     protected $mode = 'plugin_htmlok_htmlok';
 
-    /** @inheritDoc */
-    public function render($mode, Doku_Renderer $renderer, $data)
+    protected function renderMatch(string $match): string
     {
-        if ($mode !== 'xhtml') {
-            return false;
+        If ($this->getConf('htmlok')) {
+            $contents = $match;
+        } else {
+            $contents = p_xhtml_cached_geshi($match, 'html4strict', 'code');
         }
-        list($state,$match) = $data;
-        switch ($state) {
-            case DOKU_LEXER_ENTER :
-                break;
-            case DOKU_LEXER_UNMATCHED :
-                If ($this->getConf('htmlok')) {
-                    $renderer->doc .= $match;
-                } else {
-                    $renderer->doc .= p_xhtml_cached_geshi($match, 'html4strict', 'code');
-                }
-                break;
-            case DOKU_LEXER_EXIT :
-                break;
-        }
-        return true;
+
+        return $contents;
     }
 }
