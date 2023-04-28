@@ -12,18 +12,8 @@ class syntax_plugin_htmlok_htmlok extends BaseSyntaxPlugin
 {
     protected $ptype = 'normal';
     protected $sort = 190;
-
-    /** @inheritDoc */
-    public function connectTo($mode)
-    {
-        $this->Lexer->addEntryPattern('<html>(?=.*?</html>)', $mode, 'plugin_htmlok_htmlok');
-    }
-
-    /** @inheritDoc */
-    public function postConnect()
-    {
-        $this->Lexer->addExitPattern('</html>', 'plugin_htmlok_htmlok');
-    }
+    protected $tag = 'html';
+    protected $mode = 'plugin_htmlok_htmlok';
 
     /** @inheritDoc */
     public function render($mode, Doku_Renderer $renderer, $data)

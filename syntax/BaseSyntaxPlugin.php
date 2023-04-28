@@ -19,6 +19,10 @@ abstract class BaseSyntaxPlugin extends \dokuwiki\Extension\SyntaxPlugin
     protected $ptype;
     /** @var int */
     protected $sort;
+    /** @var string */
+    protected $tag;
+    /** @var string */
+    protected $mode;
 
     public function getType(): string
     {
@@ -33,6 +37,16 @@ abstract class BaseSyntaxPlugin extends \dokuwiki\Extension\SyntaxPlugin
     public function getSort(): int
     {
         return $this->sort;
+    }
+
+    public function connectTo($mode)
+    {
+        $this->Lexer->addEntryPattern("<{$this->tag}>(?=.*?</{$this->tag}>)", $mode, $this->mode);
+    }
+
+    public function postConnect()
+    {
+        $this->Lexer->addExitPattern("</{$this->tag}>", $this->mode);
     }
 
     public function handle($match, $state, $pos, Doku_Handler $handler): array

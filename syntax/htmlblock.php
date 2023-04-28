@@ -12,18 +12,8 @@ class syntax_plugin_htmlok_htmlblock extends BaseSyntaxPlugin
 {
     protected $ptype = 'block';
     protected $sort = 190;
-
-    /** @inheritDoc */
-    public function connectTo($mode)
-    {
-        $this->Lexer->addEntryPattern('<HTML>(?=.*?</HTML>)', $mode, 'plugin_htmlok_htmlblock');
-    }
-
-    /** @inheritDoc */
-    public function postConnect()
-    {
-        $this->Lexer->addExitPattern('</HTML>', 'plugin_htmlok_htmlblock');
-    }
+    protected $tag = 'HTML';
+    protected $mode = 'plugin_htmlok_htmlblock';
 
     /** @inheritDoc */
     public function render($mode, Doku_Renderer $renderer, $data)

@@ -13,18 +13,8 @@ class syntax_plugin_htmlok_phpblock extends BaseSyntaxPlugin
 {
     protected $ptype = 'block';
     protected $sort = 180;
-
-    /** @inheritDoc */
-    public function connectTo($mode)
-    {
-        $this->Lexer->addEntryPattern('<PHP>(?=.*?</PHP>)', $mode, 'plugin_htmlok_phpblock');
-    }
-
-    /** @inheritDoc */
-    public function postConnect()
-    {
-        $this->Lexer->addExitPattern('</PHP>', 'plugin_htmlok_phpblock');
-    }
+    protected $tag = 'PHP';
+    protected $mode = 'plugin_htmlok_phpblock';
 
     /** @inheritDoc */
     public function render($mode, Doku_Renderer $renderer, $data)
