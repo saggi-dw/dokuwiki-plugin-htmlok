@@ -22,7 +22,7 @@ class syntax_plugin_htmlok_phpok extends \dokuwiki\Extension\SyntaxPlugin
     /** @inheritDoc */
     public function getSort()
     {
-        return 190;
+        return 180;
     }
 
     /** @inheritDoc */
