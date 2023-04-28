@@ -10,23 +10,9 @@ use dokuwiki\plugin\htmlok\syntax\BaseSyntaxPlugin;
 
 class syntax_plugin_htmlok_phpok extends BaseSyntaxPlugin
 {
-    /** @inheritDoc */
-    public function getType()
-    {
-        return 'protected';
-    }
-
-    /** @inheritDoc */
-    public function getPType()
-    {
-        return 'normal';
-    }
-
-    /** @inheritDoc */
-    public function getSort()
-    {
-        return 180;
-    }
+    protected $type = 'protected';
+    protected $ptype = 'normal';
+    protected $sort = 180;
 
     /** @inheritDoc */
     public function connectTo($mode)

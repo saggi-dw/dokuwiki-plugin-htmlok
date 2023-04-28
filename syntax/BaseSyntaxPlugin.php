@@ -13,6 +13,28 @@ use Doku_Handler;
 
 abstract class BaseSyntaxPlugin extends \dokuwiki\Extension\SyntaxPlugin
 {
+    /** @var string */
+    protected $type;
+    /** @var string */
+    protected $ptype;
+    /** @var int */
+    protected $sort;
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function getPType(): string
+    {
+        return $this->ptype;
+    }
+
+    public function getSort(): int
+    {
+        return $this->sort;
+    }
+
     public function handle($match, $state, $pos, Doku_Handler $handler): array
     {
         switch ($state) {
