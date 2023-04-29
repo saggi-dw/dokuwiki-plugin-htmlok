@@ -92,6 +92,8 @@ abstract class BaseSyntaxPlugin extends \dokuwiki\Extension\SyntaxPlugin
         return true;
     }
 
+    abstract protected function renderMatch(string $match): string;
+
     /**
      * Execute PHP code if allowed
      *
