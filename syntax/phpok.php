@@ -2,7 +2,7 @@
 /**
  * DokuWiki Plugin htmlok (Syntax Component)
  *
- * @license GPL 2 http://www.gnu.org/licenses/gpl-2.0.html
+ * @license GPL 2 https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * @author  saggi <saggi@gmx.de>
  */
 class syntax_plugin_htmlok_phpok extends \dokuwiki\Extension\SyntaxPlugin
