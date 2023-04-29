@@ -92,13 +92,68 @@ abstract class BaseSyntaxPlugin extends \dokuwiki\Extension\SyntaxPlugin
         return true;
     }
 
-    protected function renderPhp(string $match): string
+    /**
+     * Execute PHP code if allowed
+     *
+     * @param string $text PHP code that is either executed or printed
+     * @param string $wrapper html element to wrap result if $conf['phpok'] is okff
+     *
+     * @author Andreas Gohr <andi@splitbrain.org>
+     * @author Elan Ruusamäe <glen@delfi.ee>
+     */
+    protected function php(string $text, string $wrapper = 'code'): string
     {
-        ob_start();
-        eval($match);
-        $contents = ob_get_contents();
-        ob_end_clean();
+        if ($this->getConf('phpok')) {
+            ob_start();
+            eval($text);
+            $contents= ob_get_contents();
+            ob_end_clean();
+            return $contents;
+        }
 
-        return $contents;
+        return p_xhtml_cached_geshi($text, 'php', $wrapper);
+    }
+
+    /**
+     * Output block level PHP code
+     *
+     * If 'phpok' is true this should evaluate the given code and append the result
+     * to document.
+     *
+     * @param string $text The PHP code
+     */
+    protected function phpblock(string $text): string
+    {
+        return $this->php($text, 'pre');
+    }
+
+    /**
+     * Insert HTML if allowed
+     *
+     * @param string $text html text
+     * @param string $wrapper html element to wrap result if 'htmlok' is ok.
+     *
+     * @author Andreas Gohr <andi@splitbrain.org>
+     * @author Elan Ruusamäe <glen@delfi.ee>
+     */
+    protected function html(string $text, string $wrapper = 'code'): string
+    {
+        if ($this->getConf('htmlok')) {
+            return $text;
+        }
+
+        return p_xhtml_cached_geshi($text, 'html4strict', $wrapper);
+    }
+
+    /**
+     * Output raw block-level HTML
+     *
+     * If $conf['htmlok'] is true this should add the code as is to $doc
+     *
+     * @param string $text The HTML
+     */
+    protected function htmlblock(string $text): string
+    {
+        return $this->html($text, 'pre');
     }
 }

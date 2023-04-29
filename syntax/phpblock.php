@@ -19,12 +19,6 @@ class syntax_plugin_htmlok_phpblock extends BaseSyntaxPlugin
 
     protected function renderMatch(string $match): string
     {
-        if ($this->getConf('phpok')) {
-            $contents = $this->renderPhp($match);
-        } else {
-            $contents = p_xhtml_cached_geshi($match, 'php', 'pre');
-        }
-
-        return $contents;
+        return $this->phpblock($match);
     }
 }
