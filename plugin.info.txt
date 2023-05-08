@@ -4,4 +4,4 @@ email  saggi@gmx.de
 date   2023-05-02
 name   htmlok plugin
 desc   Allows embed HTML and PHP
-url    http://www.dokuwiki.org/plugin:htmlok
+url    https://www.dokuwiki.org/plugin:htmlok
