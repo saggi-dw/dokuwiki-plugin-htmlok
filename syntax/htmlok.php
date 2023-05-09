@@ -4,73 +4,20 @@
  *
  * @license GPL 2 https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * @author  saggi <saggi@gmx.de>
+ * @author  Elan Ruusamäe <glen@delfi.ee>
  */
-class syntax_plugin_htmlok_htmlok extends \dokuwiki\Extension\SyntaxPlugin
+
+use dokuwiki\plugin\htmlok\BaseSyntaxPlugin;
+
+class syntax_plugin_htmlok_htmlok extends BaseSyntaxPlugin
 {
-    /** @inheritDoc */
-    public function getType()
-    {
-        return 'protected';
-    }
+    protected $ptype = 'normal';
+    protected $sort = 190;
+    protected $tag = 'html';
+    protected $mode = 'plugin_htmlok_htmlok';
 
-    /** @inheritDoc */
-    public function getPType()
+    protected function renderMatch(string $match): string
     {
-        return 'normal';
-    }
-
-    /** @inheritDoc */
-    public function getSort()
-    {
-        return 190;
-    }
-
-    /** @inheritDoc */
-    public function connectTo($mode)
-    {
-        $this->Lexer->addEntryPattern('<html>(?=.*?</html>)', $mode, 'plugin_htmlok_htmlok');
-    }
-
-    /** @inheritDoc */
-    public function postConnect()
-    {
-        $this->Lexer->addExitPattern('</html>', 'plugin_htmlok_htmlok');
-    }
-
-    /** @inheritDoc */
-    public function handle($match, $state, $pos, Doku_Handler $handler)
-    {
-        switch ($state) {
-            case DOKU_LEXER_ENTER :
-                return array($state,$match);
-            case DOKU_LEXER_UNMATCHED :
-                return array($state,$match);
-            case DOKU_LEXER_EXIT :
-                return array($state,'');
-        }
-        return array();
-    }
-
-    /** @inheritDoc */
-    public function render($mode, Doku_Renderer $renderer, $data)
-    {
-        if ($mode !== 'xhtml') {
-            return false;
-        }
-        list($state,$match) = $data;
-        switch ($state) {
-            case DOKU_LEXER_ENTER :
-                break;
-            case DOKU_LEXER_UNMATCHED :
-                If ($this->getConf('htmlok')) {
-                    $renderer->doc .= $match;
-                } else {
-                    $renderer->doc .= p_xhtml_cached_geshi($match, 'html4strict', 'code');
-                }
-                break;
-            case DOKU_LEXER_EXIT :
-                break;
-        }
-        return true;
+        return $this->html($match);
     }
 }
