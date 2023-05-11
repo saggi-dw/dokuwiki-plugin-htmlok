@@ -16,7 +16,7 @@ jobs:
   release:
     name: Release
     # https://github.com/dokuwiki/dokuwiki/pull/3966
-    uses: glensc/dokuwiki/.github/workflows/plugin-release.yml@8aaa80681ebaa642c4a8904ea2bf5cd8aff06243
+    uses: glensc/dokuwiki/.github/workflows/plugin-release.yml@39431875f
     secrets:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       DOKUWIKI_USER: ${{ secrets.DOKUWIKI_USER }}
